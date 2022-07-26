@@ -15,7 +15,7 @@ test('Renderer:steps', () => {
             value: 1,
             steps: [
               {
-                title: 'First',
+                title: 'Firs3',
                 subTitle: 'this is subTitle',
                 description: 'this is description'
               },
