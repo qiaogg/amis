@@ -6,7 +6,8 @@ import {
   autobind,
   hasAbility,
   columnsSplit,
-  flattenTreeWithLeafNodes
+  flattenTreeWithLeafNodes,
+  CustomStyle
 } from 'amis-core';
 import type {ActionObject, Api, OptionsControlProps, Option} from 'amis-core';
 import {Checkbox, Icon} from 'amis-ui';
@@ -349,7 +350,11 @@ export default class CheckboxesControl extends React.Component<
       addApi,
       createBtnLabel,
       translate: __,
-      optionType
+      optionType,
+      id,
+      env,
+      themeCss,
+      baseControlClassName
     } = this.props;
 
     let body: Array<React.ReactNode> = [];
@@ -382,7 +387,10 @@ export default class CheckboxesControl extends React.Component<
     body = this.columnsSplit(body);
 
     return (
-      <div className={cx(`CheckboxesControl`, className)} ref="checkboxRef">
+      <div
+        className={cx(`CheckboxesControl`, className, baseControlClassName)}
+        ref="checkboxRef"
+      >
         {body && body.length ? (
           body
         ) : (
@@ -395,6 +403,19 @@ export default class CheckboxesControl extends React.Component<
             {__(createBtnLabel)}
           </a>
         ) : null}
+        <CustomStyle
+          config={{
+            id,
+            themeCss,
+            classNames: [
+              {
+                key: 'baseControlClassName',
+                value: baseControlClassName
+              }
+            ]
+          }}
+          env={env}
+        />
       </div>
     );
   }
